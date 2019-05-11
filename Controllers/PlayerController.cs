@@ -30,6 +30,7 @@ namespace Controllers
             List<Player> players = new List<Player>(){
                 new Player(){Id = 1, Name = "Robert"}
             };
+            
             if(id != null){
                 var player = players.FirstOrDefault(x => x.Id.ToString() == id);
 
