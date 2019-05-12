@@ -37,10 +37,11 @@ namespace Controllers
                 var playerPokemon = pokemon.Where(x => x.PlayerId.ToString() == playerId).ToList();
 
                 if(playerPokemon != null){
-                    return (ActionResult)new OkObjectResult($"Found {playerPokemon.Count} Pokemon for player {playerId}");
+                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(playerPokemon);
+                    return (ActionResult)new OkObjectResult(json);                
                 }
                 else {
-                    return (ActionResult)new OkObjectResult($"No Pokemon associated with player Id {playerId}");
+                    return (ActionResult)new NotFoundObjectResult($"No Pokemon associated with player Id {playerId}");
                 }
             }
 

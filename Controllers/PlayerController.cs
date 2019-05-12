@@ -33,7 +33,8 @@ namespace Controllers
                 var player = players.FirstOrDefault(x => x.Id.ToString() == id);
 
                 if(player != null){
-                    return (ActionResult)new OkObjectResult($"Found player named {player.Name}");
+                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(player);
+                    return (ActionResult)new OkObjectResult(player);  
                 }
                 else {
                     return (ActionResult)new OkObjectResult($"No player found with Id {id}");
