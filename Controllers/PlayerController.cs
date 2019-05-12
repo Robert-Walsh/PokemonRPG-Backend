@@ -14,14 +14,12 @@ namespace Controllers
 {
     public static class PlayerController
     {
-        [FunctionName("GetPlayer")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+        [FunctionName("Player")]
+        public static async Task<IActionResult> Get(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Player/{id}")] HttpRequest req, string id,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string id = req.Query["id"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
